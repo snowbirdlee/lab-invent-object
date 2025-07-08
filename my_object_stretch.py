@@ -11,6 +11,7 @@ class Squishmallow():
     color: str = "white"
     eyes_open: bool = field(default = False, init = False)
     size_string: str = "small"
+    type = "squishmallow"
 
     def set_size(self, size: int):
         if size > 4:
@@ -37,14 +38,14 @@ class Squishmallow():
     def status(self):
         if self.eyes_open:
             if self.size_string == "extra large":
-                print(f"{self.name.title()} is now an ${self.price:.2f} {self.size_string}, {self.color} Squishmallow whose eyes are open.")
+                print(f"{self.name.title()} is now an ${self.price:.2f} {self.size_string}, {self.color} {self.type.title()} whose eyes are open.")
             else:
-                print(f"{self.name.title()} is now a ${self.price:.2f} {self.size_string}, {self.color} Squishmallow whose eyes are open.")
+                print(f"{self.name.title()} is now a ${self.price:.2f} {self.size_string}, {self.color} {self.type.title()} whose eyes are open.")
         else:
             if self.size_string == "extra large":
-                print(f"{self.name.title()} is now an ${self.price:.2f} {self.size_string}, {self.color} Squishmallow whose eyes are closed.")
+                print(f"{self.name.title()} is now an ${self.price:.2f} {self.size_string}, {self.color} {self.type.title()} whose eyes are closed.")
             else:
-                print(f"{self.name.title()} is now a ${self.price:.2f} {self.size_string}, {self.color} Squishmallow whose eyes are closed.")
+                print(f"{self.name.title()} is now a ${self.price:.2f} {self.size_string}, {self.color} {self.type.title()} whose eyes are closed.")
     
     def inflation(self):
         self.price = self.price + 1
@@ -64,6 +65,8 @@ class Squishmallow():
             self.size_string = "large"
         elif self.size == 4:
             self.size_string = "extra large"
+    def hug(self, other_mallow: "Squishmallow"):
+        print(f"\n{self.name.title()} hugs {other_mallow.name.title()}. So sweet!")
 
 def main():
     
@@ -85,7 +88,7 @@ def main():
 
     buttons.inflation()
     aimee.inflation()
-    print("\nThere's inflation in the market! Buttons went up $1...")
+    print("\nThere's inflation in the market! Mallows went up $1...")
     time.sleep(1)
     print(f"Current price of Buttons: ${buttons.price:.2f}")
     print(f"Current price of Aimee: ${aimee.price:.2f}")
@@ -102,12 +105,16 @@ def main():
     print("\nButtons is eating...")
     print("Aimee is eating...")
     time.sleep(3)
-    print(f"Buttons is full! He is now {buttons.size_string}.\n")
+    print(f"Buttons is full! He is now {buttons.size_string}.")
     print(f"Aimee is full! She is now {aimee.size_string}.\n")
     time.sleep(1)
     
     buttons.status()
     aimee.status()
+    time.sleep(1)
+    
+    buttons.hug(aimee)
+    time.sleep(1)
 
 if __name__ == "__main__":
     main()
